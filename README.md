@@ -132,20 +132,6 @@ Optional:
 
 ---
 
-## Screenshots
-
-You can add screenshots here.
-
-Example:
-
-```
-/screenshots/import.png
-/screenshots/discovery.png
-/screenshots/conformance.png
-```
-
----
-
 ## Example Workflow
 
 1. Import an **event log**
