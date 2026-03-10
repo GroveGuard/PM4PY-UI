@@ -19,55 +19,10 @@ jobs:
       matrix:
         include:
           # -------- Desktop --------
-          - name: linux
-            runner: ubuntu-latest
-            build_cmd: "flet build linux"
-            artifact_path: build/linux
-            needs_linux_deps: true
-
-          - name: macos
-            runner: macos-latest
-            build_cmd: "flet build macos"
-            artifact_path: build/macos
-            needs_linux_deps: false
-
           - name: windows
             runner: windows-latest
             build_cmd: "flet build windows"
             artifact_path: build/windows
-            needs_linux_deps: false
-
-          # -------- Android --------
-          - name: aab
-            runner: ubuntu-latest
-            build_cmd: "flet build aab"
-            artifact_path: build/aab
-            needs_linux_deps: false
-
-          - name: apk
-            runner: ubuntu-latest
-            build_cmd: "flet build apk"
-            artifact_path: build/apk
-            needs_linux_deps: false
-
-          # -------- iOS --------
-          - name: ipa
-            runner: macos-latest
-            build_cmd: "flet build ipa"
-            artifact_path: build/ipa
-            needs_linux_deps: false
-
-          - name: ios-simulator
-            runner: macos-latest
-            build_cmd: "flet build ios-simulator"
-            artifact_path: build/ios-simulator
-            needs_linux_deps: false
-
-          # -------- Web --------
-          - name: web
-            runner: ubuntu-latest
-            build_cmd: "flet build web"
-            artifact_path: build/web
             needs_linux_deps: false
 
     steps:
