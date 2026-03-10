@@ -14,19 +14,26 @@ dependencies = [
     "pyarrow",
 ]
 
-[dependency-groups]
-dev = [
-    "flet[all]==0.82.0",
-]
+[tool.uv]
+exclude-dependencies = ["cvxopt"]
 
 # Docs: https://docs.flet.dev/publish
 
 [tool.flet]
 build_number = 1
 product = "PM4PY-UI"
+org = "HessenAutomation"
 
 [tool.flet.app]
 path = "src"
 
-[tool.flet.flutter.pubspec.dependency_overrides]
-flet = { git = { url = "https://github.com/flet-dev/flet.git", ref = "main", path = "packages/flet" } }
+[tool.flet.windows.cleanup]
+packages = true
+package_files = [
+    "cvxopt",
+    "cvxopt/**",
+    "cvxopt-*.dist-info",
+    "cvxopt-*.dist-info/**",
+    "cvxopt.libs",
+    "cvxopt.libs/**",
+]
