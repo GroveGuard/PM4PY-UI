@@ -12,6 +12,7 @@ dependencies = [
     "pm4py",
     "pandas",
     "pyarrow",
+    "asyncio",
 ]
 
 [tool.uv]
