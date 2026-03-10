@@ -1,0 +1,32 @@
+[project]
+name = "PM4PY-UI"
+version = "0.1.0"   # Build Version. Update for each new release of your app.
+description = "Built by GitHub Actions."
+readme = "README.md"
+requires-python = ">=3.12"
+authors = [
+    { name = "Anyo"}
+]
+dependencies = [
+    "flet==0.82.0",
+    "pm4py",
+    "pandas",
+    "pyarrow",
+]
+
+[dependency-groups]
+dev = [
+    "flet[all]==0.82.0",
+]
+
+# Docs: https://docs.flet.dev/publish
+
+[tool.flet]
+build_number = 1
+product = "PM4PY-UI"
+
+[tool.flet.app]
+path = "src"
+
+[tool.flet.flutter.pubspec.dependency_overrides]
+flet = { git = { url = "https://github.com/flet-dev/flet.git", ref = "main", path = "packages/flet" } }
