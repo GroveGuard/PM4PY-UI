@@ -1,3 +1,9 @@
+#!/usr/bin/env python3
+"""
+PM4PY Suite – Flet 0.82 kompatible App
+pip install flet pm4py pandas pyarrow
+"""
+
 import asyncio
 import threading
 import traceback
@@ -1171,9 +1177,15 @@ def main(page: ft.Page):
         spin_ref  = ft.Ref[ft.Container]()
 
         async def run(e):
-            if state.net is None: err("Kein Prozessmodell vorhanden!"); return
-            try: n = int(cases_ref.current.value or "100")
-            except ValueError: err("Anzahl muss Ganzzahl sein!"); return
+            if state.net is None:
+                err("Kein Prozessmodell vorhanden!")
+                return
+
+            try:
+                n = int(cases_ref.current.value or "100")
+            except ValueError:
+                err("Anzahl muss Ganzzahl sein!")
+                return
 
             def _run(net, im, fm, n):
                 return pm4py.play_out(net, im, fm, parameters={"num_traces": n})
@@ -1193,9 +1205,11 @@ def main(page: ft.Page):
                     spin_ref.current.visible = False
                     page.update()
 
-            n_cases = sim_log["case:concept:name"].nunique()
-            n_events = len(sim_log)
-            acts = sim_log["concept:name"].value_counts().head(5)
+            sim_df = pm4py.convert_to_dataframe(sim_log)
+            n_cases = sim_df["case:concept:name"].nunique()
+            n_events = len(sim_df)
+            acts = sim_df["concept:name"].value_counts().head(5)
+
             txt_ref.current.value = (
                 f"Simulierte Cases: {n_cases:,}\n"
                 f"Simulierte Events: {n_events:,}\n"
@@ -1205,6 +1219,7 @@ def main(page: ft.Page):
             out_ref.current.visible = True
             page.update()
             snack(f"✅ Simulation: {n_cases:,} Cases generiert", SUCCESS)
+
 
         return ft.Column([
             _section_header("🎲", "Process Simulation", "Simulieren Sie Prozessabläufe"),
